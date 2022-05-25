@@ -16,7 +16,12 @@ const useGame = (): GameReturnType => {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
-    setBalls((prev) => [...prev, createBall(200, "red", 300)]);
+    const intervalId = window.setInterval(() => {
+      setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
+    }, 2000);
+    return () => {
+      window.clearInterval(intervalId);
+    };
   }, []);
 
   function getRandomInt(min: number, max: number) {
@@ -46,8 +51,10 @@ const useGame = (): GameReturnType => {
 
   const createBall = (size: number, color: string, points: number): IBall => {
     const { positionX, positionY } = randomPositonBall(size);
+    const id = uuidv4();
+    // setTimeout(() => removeBall(id), 5000);
     return {
-      id: uuidv4(),
+      id,
       size,
       positionX,
       positionY,
@@ -57,8 +64,7 @@ const useGame = (): GameReturnType => {
   };
 
   const removeBall = (ballId: string): void => {
-    const filterdBalls = balls.filter((ball) => ball.id !== ballId);
-    setBalls(filterdBalls);
+    setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
   };
 
   return { balls, roundTime, score, removeBall };

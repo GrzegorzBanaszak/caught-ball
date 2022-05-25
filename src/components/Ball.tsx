@@ -21,6 +21,7 @@ const BallElement = styled(motion.div) <IBallProps>`
   border-radius: 50%;
   background-color: ${(props) => `${props.color}`};
   position: absolute;
+  display:block ;
   z-index: 3;
   top: ${(props) => `${props.positionY}px`};
   left: ${(props) => `${props.positionX}px`};

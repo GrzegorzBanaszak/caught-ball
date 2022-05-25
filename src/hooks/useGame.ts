@@ -52,7 +52,7 @@ const useGame = (): GameReturnType => {
   const createBall = (size: number, color: string, points: number): IBall => {
     const { positionX, positionY } = randomPositonBall(size);
     const id = uuidv4();
-    // setTimeout(() => removeBall(id), 5000);
+    setTimeout(() => removeBall(id), 5000);
     return {
       id,
       size,

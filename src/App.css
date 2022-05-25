@@ -1,25 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-.App {
-  background-color: rgb(201, 215, 225);
-  height: 100vh;
-
-}
-
-.app-container {
-  margin: 0 auto;
-  max-width: 1440px;
-  height: 100%;
-  position: relative;
-}
-
-.ball {
-  width: 10rem;
-  height: 10rem;
-  position: absolute;
+body {
+  font-family: 'Koulen',
+    cursive;
 }

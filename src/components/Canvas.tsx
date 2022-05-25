@@ -1,9 +1,12 @@
 import React from 'react'
 import bg from '../assets/bg-canvas.svg'
 import "../styles/canvas.css"
-const Canvas = () => {
+import Navigation from './Navigation'
+const Canvas = ():JSX.Element => {
   return (
-    <main style={{backgroundImage:`url(${bg})`}} className="canvas-container">Canvas</main>
+    <main style={{backgroundImage:`url(${bg})`}} className="canvas-container">
+        <Navigation/>
+    </main>
   )
 }
 

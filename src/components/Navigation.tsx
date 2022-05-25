@@ -1,10 +1,17 @@
 import React from 'react'
+import "../styles/navigation.css"
 
 
-
-const Navigation = () => {
+const Navigation = ():JSX.Element => {
   return (
-    <div>Navigation</div>
+    <nav>
+        <div className="nav-container">
+            <div className="nav-info">Time</div>
+            <div className="nav-info">Points</div>
+            <div className="nav-info">Points to next level</div>
+
+        </div>
+    </nav>
   )
 }
 

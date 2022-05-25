@@ -1,38 +1,20 @@
 import React from 'react'
-import { useState } from 'react'
 import bg from '../assets/bg-canvas.svg'
-import IBall from '../interfaces/IBall'
+import useGame from '../hooks/useGame'
 import "../styles/canvas.css"
 import Ball from './Ball'
 import Navigation from './Navigation'
 const Canvas: React.FC = (): JSX.Element => {
-  const [balls, setBalls] = useState<IBall[]>([{
-    size: 200,
-    positionX: 200,
-    positionY: 300,
-    color: "red",
-    points: 300
-  },
-  {
-    size: 20,
-    positionX: 300,
-    positionY: 300,
-    color: "green",
-    points: 300
-  },
-  {
-    size: 20,
-    positionX: 400,
-    positionY: 120,
-    color: "green",
-    points: 300
-  }])
+  const { balls, removeBall
+  } = useGame()
+
+
   return (
     <main style={{ backgroundImage: `url(${bg})` }} className="canvas-container">
       <Navigation />
-      {balls.map((item, index) => {
-        const { size, positionX, positionY, color } = item
-        return <Ball key={index} size={size} positionX={positionX} positionY={positionY} color={color} />
+      {balls.map((item) => {
+        const { size, positionX, positionY, color, id } = item
+        return <Ball removeBall={removeBall} key={id} ballId={id} size={size} positionX={positionX} positionY={positionY} color={color} />
       })}
     </main>
   )

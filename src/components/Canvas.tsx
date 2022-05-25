@@ -12,13 +12,27 @@ const Canvas: React.FC = (): JSX.Element => {
     positionY: 300,
     color: "red",
     points: 300
+  },
+  {
+    size: 20,
+    positionX: 300,
+    positionY: 300,
+    color: "green",
+    points: 300
+  },
+  {
+    size: 20,
+    positionX: 400,
+    positionY: 120,
+    color: "green",
+    points: 300
   }])
   return (
     <main style={{ backgroundImage: `url(${bg})` }} className="canvas-container">
       <Navigation />
       {balls.map((item, index) => {
         const { size, positionX, positionY, color } = item
-        return <Ball size={size} positionX={positionX} positionY={positionY} color={color} />
+        return <Ball key={index} size={size} positionX={positionX} positionY={positionY} color={color} />
       })}
     </main>
   )

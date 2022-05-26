@@ -8,15 +8,19 @@ type GameReturnType = {
   roundTime: number;
   score: number;
   isPlaing: boolean;
+  gameState: string;
   onBallClick: (ballId: string, pointsToAdd: number) => void;
   onClickStart: () => void;
 };
 
+const gameStates: string[] = ["Start", "Plaing", "Result"];
+
 const useGame = (): GameReturnType => {
   const [balls, setBalls] = useState<IBall[]>([]);
   const [roundTime, setRoundTime] = useState<number>(0);
-  const [score, setScore] = useState(0);
-  const [level, setLevel] = useState(1);
+  const [score, setScore] = useState<number>(0);
+  const [level, setLevel] = useState<number>(1);
+  const [gameState, setGameState] = useState<string>(gameStates[0]);
   const [isPlaing, setIsPlaing] = useState(false);
   useEffect(() => {
     if (isPlaing) {
@@ -40,6 +44,7 @@ const useGame = (): GameReturnType => {
           if (prev - 2 < 0) {
             setIsPlaing(false);
             setBalls([]);
+            setGameState(gameStates[2]);
           }
           return prev - 1;
         }
@@ -100,7 +105,15 @@ const useGame = (): GameReturnType => {
     setIsPlaing(true);
   };
 
-  return { balls, roundTime, score, onBallClick, isPlaing, onClickStart };
+  return {
+    balls,
+    roundTime,
+    score,
+    onBallClick,
+    isPlaing,
+    onClickStart,
+    gameState,
+  };
 };
 
 export default useGame;

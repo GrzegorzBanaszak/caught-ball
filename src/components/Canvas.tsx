@@ -49,19 +49,30 @@ font-family: 'Fredoka One', cursive;
   animation: ${StarButtonKeyfram} 2.5s infinite alternate;  
     cursor:pointer;
 `
+
+const Result = styled.div`
+  position:absolute ;
+  z-index:2;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%) ;
+  color:white;
+  font-size:5rem ;
+`
 const Canvas: React.FC = (): JSX.Element => {
-  const { balls, onBallClick, roundTime, score, isPlaing, onClickStart
+  const { balls, onBallClick, roundTime, score, isPlaing, onClickStart, gameState
   } = useGame()
 
 
   return (
     <main style={{ backgroundImage: `url(${bg})` }} className="canvas-container">
-      <Navigation roundTime={roundTime} score={score} />
+      {isPlaing && <Navigation roundTime={roundTime} score={score} />}
       {balls.map((item) => {
         const { size, positionX, positionY, color, id, points } = item
         return <Ball onBallClick={onBallClick} key={id} ballId={id} size={size} positionX={positionX} positionY={positionY} color={color} points={points} />
       })}
-      {!isPlaing && <StartButton onClick={onClickStart}>Start</StartButton>}
+      {!isPlaing && gameState === "Start" && <StartButton onClick={onClickStart}>Start</StartButton>}
+      {!isPlaing && gameState === "Result" && <Result>You result is {score} pt </Result>}
     </main>
   )
 }

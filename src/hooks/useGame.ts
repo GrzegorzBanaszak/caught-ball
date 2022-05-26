@@ -7,7 +7,9 @@ type GameReturnType = {
   balls: IBall[];
   roundTime: number;
   score: number;
+  isPlaing: boolean;
   onBallClick: (ballId: string, pointsToAdd: number) => void;
+  onClickStart: () => void;
 };
 
 const useGame = (): GameReturnType => {
@@ -15,21 +17,19 @@ const useGame = (): GameReturnType => {
   const [roundTime, setRoundTime] = useState<number>(0);
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState(1);
+  const [isPlaing, setIsPlaing] = useState(false);
   useEffect(() => {
-    // const timeIntervalId = startGame(10);
-    // const intervalId = window.setInterval(() => {
-    //   setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
-    // }, 2000);
-    // return () => {
-    //   window.clearInterval(timeIntervalId);
-    //   window.clearInterval(intervalId);
-    // };
-  }, []);
-
-  const startGame = (time: number): number => {
-    const timeIntervalId = createTimer(120);
-    return timeIntervalId;
-  };
+    if (isPlaing) {
+      const timeIntervalId = createTimer(10);
+      const intervalId = window.setInterval(() => {
+        setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
+      }, 2000);
+      return () => {
+        window.clearInterval(timeIntervalId);
+        window.clearInterval(intervalId);
+      };
+    }
+  }, [isPlaing]);
 
   const createTimer = (time: number): number => {
     const timeIntervalId = window.setInterval(() => {
@@ -95,7 +95,11 @@ const useGame = (): GameReturnType => {
     setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
   };
 
-  return { balls, roundTime, score, onBallClick };
+  const onClickStart = (): void => {
+    setIsPlaing(true);
+  };
+
+  return { balls, roundTime, score, onBallClick, isPlaing, onClickStart };
 };
 
 export default useGame;

@@ -1,8 +1,7 @@
-export default interface IBall {
+import IBallType from "./IBallType";
+
+export default interface IBall extends IBallType {
   id: string;
-  size: number;
   positionX: number;
   positionY: number;
-  color: string;
-  points: number;
 }

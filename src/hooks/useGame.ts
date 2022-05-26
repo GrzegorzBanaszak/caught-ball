@@ -36,9 +36,9 @@ const useGame = (): GameReturnType => {
 
   useEffect(() => {
     if (isPlaing) {
-      generateRandomBall();
+      if (balls.length < 40 && roundTime > 4) generateRandomBall();
     }
-  }, [balls, isPlaing]);
+  }, [roundTime, isPlaing]);
 
   const createTimer = (time: number): number => {
     const timeIntervalId = window.setInterval(() => {
@@ -84,13 +84,13 @@ const useGame = (): GameReturnType => {
   };
 
   const generateRandomBall = (): void => {
-    const timeToShowAndRemove = getRandomInt(3000, 6000);
+    const timeToShowAndRemove = getRandomInt(1000, 3000);
     const { size, color, points } = ballTypes[getRandomInt(0, 9)];
     createBall(size, color, points, timeToShowAndRemove);
     setTimeout(() => {
       setBalls((prev) => [
         ...prev,
-        createBall(size, color, points, timeToShowAndRemove / 2),
+        createBall(size, color, points, timeToShowAndRemove),
       ]);
     }, timeToShowAndRemove);
   };

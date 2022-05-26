@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "../styles/ball.css";
 
 //Props interface for Ball
@@ -21,17 +20,44 @@ interface IBallElementProps {
   color: string;
 }
 
+const neonEffecApplay = (color: string) => keyframes`
+  100% {
+      box-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px ${color},
+        0 0 80px ${color},
+        0 0 90px ${color},
+        0 0 100px ${color},
+        0 0 150px ${color};
+    }
+  0% {
+     box-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px ${color},
+      0 0 45px ${color},
+      0 0 55px ${color},
+      0 0 70px ${color},
+      0 0 80px ${color};
+  }
+`
+
+
 //Div styled element
-const BallElement = styled(motion.div) <IBallElementProps>`
+const BallElement = styled.div<IBallElementProps>`
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   border-radius: 50%;
-  background-color: ${(props) => `${props.color}`};
+  background-color:white ;
   position: absolute;
   display:block ;
   z-index: 3;
   top: ${(props) => `${props.positionY}px`};
   left: ${(props) => `${props.positionX}px`};
+  animation: ${(props) => neonEffecApplay(props.color)} 0.4s infinite alternate;
 `;
 
 const Ball: React.FC<IBallProps> = ({
@@ -49,17 +75,6 @@ const Ball: React.FC<IBallProps> = ({
   }
   return (
     <BallElement
-      whileTap={{
-        boxShadow: `0 0 .5rem #fff,
-              0 0 .5rem #fff,
-              0 0 3rem ${color},
-              0 0 0.8rem ${color},
-              0 0 2.8rem ${color},
-              inset 0 0 1.3rem ${color}`,
-        transition: {
-          duration: 0.2
-        }
-      }}
       onClick={handleClickBall}
       size={size}
       positionX={positionX}

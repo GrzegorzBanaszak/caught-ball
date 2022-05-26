@@ -1,5 +1,5 @@
 export default interface IBall {
-  id?: string;
+  id: string;
   size: number;
   positionX: number;
   positionY: number;

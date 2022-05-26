@@ -5,17 +5,24 @@ import "../styles/ball.css";
 
 //Props interface for Ball
 interface IBallProps {
-  ballId?: string
+  ballId: string
   size: number;
   positionX: number;
   positionY: number;
   color: string;
-  isClick?: boolean;
-  removeBall?: (ballId: string) => void;
+  points: number;
+  onBallClick: (ballId: string, pointsToAdd: number) => void;
+}
+
+interface IBallElementProps {
+  size: number;
+  positionX: number;
+  positionY: number;
+  color: string;
 }
 
 //Div styled element
-const BallElement = styled(motion.div) <IBallProps>`
+const BallElement = styled(motion.div) <IBallElementProps>`
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   border-radius: 50%;
@@ -32,17 +39,13 @@ const Ball: React.FC<IBallProps> = ({
   positionX,
   positionY,
   color,
-  removeBall,
-  ballId
+  onBallClick,
+  ballId,
+  points
 }): JSX.Element => {
 
   const handleClickBall = () => {
-
-    if (removeBall !== undefined && ballId !== undefined) {
-      setTimeout(() => removeBall(ballId), 300)
-
-    }
-
+    setTimeout(() => onBallClick(ballId, points), 100)
   }
   return (
     <BallElement

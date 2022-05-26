@@ -7,7 +7,7 @@ type GameReturnType = {
   balls: IBall[];
   roundTime: number;
   score: number;
-  removeBall: (ballId: string) => void;
+  onBallClick: (ballId: string, pointsToAdd: number) => void;
 };
 
 const useGame = (): GameReturnType => {
@@ -16,14 +16,12 @@ const useGame = (): GameReturnType => {
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState(1);
   useEffect(() => {
-    const timeIntervalId = startGame(10);
-    return () => {
-      window.clearInterval(timeIntervalId);
-    };
+    // const timeIntervalId = startGame(10);
     // const intervalId = window.setInterval(() => {
     //   setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
     // }, 2000);
     // return () => {
+    //   window.clearInterval(timeIntervalId);
     //   window.clearInterval(intervalId);
     // };
   }, []);
@@ -92,7 +90,12 @@ const useGame = (): GameReturnType => {
     setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
   };
 
-  return { balls, roundTime, score, removeBall };
+  const onBallClick = (ballId: string, pointsToAdd: number): void => {
+    setScore((prev) => prev + pointsToAdd);
+    setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
+  };
+
+  return { balls, roundTime, score, onBallClick };
 };
 
 export default useGame;

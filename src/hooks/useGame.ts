@@ -12,17 +12,42 @@ type GameReturnType = {
 
 const useGame = (): GameReturnType => {
   const [balls, setBalls] = useState<IBall[]>([]);
-  const [roundTime, setRoundTime] = useState(0);
+  const [roundTime, setRoundTime] = useState<number>(0);
   const [score, setScore] = useState(0);
-
+  const [level, setLevel] = useState(1);
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
-    }, 2000);
+    const timeIntervalId = startGame(10);
     return () => {
-      window.clearInterval(intervalId);
+      window.clearInterval(timeIntervalId);
     };
+    // const intervalId = window.setInterval(() => {
+    //   setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
+    // }, 2000);
+    // return () => {
+    //   window.clearInterval(intervalId);
+    // };
   }, []);
+
+  const startGame = (time: number): number => {
+    const timeIntervalId = createTimer(120);
+    return timeIntervalId;
+  };
+
+  const createTimer = (time: number): number => {
+    const timeIntervalId = window.setInterval(() => {
+      setRoundTime((prev) => {
+        if (prev === 0) {
+          return time;
+        } else {
+          if (prev - 2 < 0) {
+            window.clearInterval(timeIntervalId);
+          }
+          return prev - 1;
+        }
+      });
+    }, 1000);
+    return timeIntervalId;
+  };
 
   function getRandomInt(min: number, max: number) {
     min = Math.ceil(min);

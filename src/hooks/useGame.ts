@@ -38,7 +38,9 @@ const useGame = (): GameReturnType => {
           return time;
         } else {
           if (prev - 2 < 0) {
-            window.clearInterval(timeIntervalId);
+            // window.clearInterval(timeIntervalId);
+            setIsPlaing(false);
+            setBalls([]);
           }
           return prev - 1;
         }

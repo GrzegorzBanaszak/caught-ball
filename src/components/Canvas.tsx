@@ -1,12 +1,40 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import bg from '../assets/bg-canvas.svg'
 import useGame from '../hooks/useGame'
 import "../styles/canvas.css"
 import Ball from './Ball'
 import Navigation from './Navigation'
 
+const StarButtonKeyfram = keyframes`
+100% {
+    /* Larger blur radius */
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0fa,
+      0 0 80px #0fa,
+      0 0 90px #0fa,
+      0 0 100px #0fa,
+      0 0 150px #0fa;
+  }
+  0% {
+    /* Smaller blur radius */
+    text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #0fa,
+      0 0 45px #0fa,
+      0 0 55px #0fa,
+      0 0 70px #0fa,
+      0 0 80px #0fa;
+  }
+`
+
 const StartButton = styled.button`
+font-family: 'Fredoka One', cursive;
   position:absolute ;
   z-index:2;
   top: 50%;
@@ -18,15 +46,7 @@ const StartButton = styled.button`
   border:none ;
   font-size:5rem ;
   background-color:transparent;
-  text-shadow:
-    0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 21px #fff,
-    0 0 42px #0fa,
-    0 0 82px #0fa,
-    0 0 92px #0fa,
-    0 0 102px #0fa,
-    0 0 151px #0fa;
+  animation: ${StarButtonKeyfram} 2.5s infinite alternate;  
     cursor:pointer;
 `
 const Canvas: React.FC = (): JSX.Element => {

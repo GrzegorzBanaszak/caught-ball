@@ -1,8 +1,8 @@
+import { ballTypes } from "./../ballsTypes";
 import { useEffect } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import IBall from "../interfaces/IBall";
-
 type GameReturnType = {
   balls: IBall[];
   roundTime: number;
@@ -22,18 +22,23 @@ const useGame = (): GameReturnType => {
   const [level, setLevel] = useState<number>(1);
   const [gameState, setGameState] = useState<string>(gameStates[0]);
   const [isPlaing, setIsPlaing] = useState(false);
+
   useEffect(() => {
     if (isPlaing) {
-      const timeIntervalId = createTimer(10);
-      const intervalId = window.setInterval(() => {
-        setBalls((prev) => [...prev, createBall(100, "blue", 100)]);
-      }, 2000);
+      const timeIntervalId = createTimer(30);
+      // generateRandomBall();
+
       return () => {
         window.clearInterval(timeIntervalId);
-        window.clearInterval(intervalId);
       };
     }
   }, [isPlaing]);
+
+  useEffect(() => {
+    if (isPlaing) {
+      generateRandomBall();
+    }
+  }, [balls, isPlaing]);
 
   const createTimer = (time: number): number => {
     const timeIntervalId = window.setInterval(() => {
@@ -78,10 +83,27 @@ const useGame = (): GameReturnType => {
     return { positionX, positionY };
   };
 
-  const createBall = (size: number, color: string, points: number): IBall => {
+  const generateRandomBall = (): void => {
+    const timeToShowAndRemove = getRandomInt(3000, 6000);
+    const { size, color, points } = ballTypes[getRandomInt(0, 9)];
+    createBall(size, color, points, timeToShowAndRemove);
+    setTimeout(() => {
+      setBalls((prev) => [
+        ...prev,
+        createBall(size, color, points, timeToShowAndRemove / 2),
+      ]);
+    }, timeToShowAndRemove);
+  };
+
+  const createBall = (
+    size: number,
+    color: string,
+    points: number,
+    time: number
+  ): IBall => {
     const { positionX, positionY } = randomPositonBall(size);
     const id = uuidv4();
-    setTimeout(() => removeBall(id), 5000);
+    setTimeout(() => removeBall(id), time);
     return {
       id,
       size,
@@ -97,7 +119,7 @@ const useGame = (): GameReturnType => {
   };
 
   const onBallClick = (ballId: string, pointsToAdd: number): void => {
-    setScore((prev) => prev + pointsToAdd);
+    if (isPlaing) setScore((prev) => prev + pointsToAdd);
     setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
   };
 

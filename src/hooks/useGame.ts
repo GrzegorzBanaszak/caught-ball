@@ -1,4 +1,3 @@
-import { ballTypes } from "./../ballsTypes";
 import { useEffect } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -116,7 +115,7 @@ const useGame = (): GameReturnType => {
       level.timeOfBallDisplay[0],
       level.timeOfBallDisplay[1]
     );
-    const { size, color, points } = ballTypes[getRandomInt(0, 9)];
+    const { size, color, points } = map.ballTypesForMap[getRandomInt(0, 9)];
     createBall(size, color, points, timeToShowAndRemove);
     setTimeout(() => {
       setBalls((prev) => [

@@ -4,6 +4,9 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import IBall from "../interfaces/IBall";
 import { GameStateEnum } from "../interfaces/GameStatEnum";
+import { mapsCollection } from "../maps";
+import IMap from "../interfaces/IMap";
+import ILevel from "../interfaces/ILevel";
 type GameReturnType = {
   balls: IBall[];
   roundTime: number;
@@ -18,7 +21,8 @@ const useGame = (): GameReturnType => {
   const [balls, setBalls] = useState<IBall[]>([]);
   const [roundTime, setRoundTime] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
-  const [level, setLevel] = useState<number>(1);
+  const [map, setMap] = useState<IMap>(mapsCollection[0]);
+  const [level, setLevel] = useState<ILevel>(mapsCollection[0].levels[0]);
   const [gameState, setGameState] = useState<GameStateEnum>(
     GameStateEnum.Start
   );

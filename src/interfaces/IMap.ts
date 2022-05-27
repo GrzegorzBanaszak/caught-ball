@@ -1,3 +1,4 @@
+import IBallType from "./IBallType";
 import ILevel from "./ILevel";
 
 export default interface IMap {
@@ -5,4 +6,5 @@ export default interface IMap {
   name: string;
   levels: ILevel[];
   mapColor: string;
+  ballTypesForMap: IBallType[];
 }

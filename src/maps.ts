@@ -1,3 +1,4 @@
+import { getBallTypes } from "./ballsTypes";
 import IMap from "./interfaces/IMap";
 
 export const mapsCollection: IMap[] = [
@@ -31,5 +32,6 @@ export const mapsCollection: IMap[] = [
       },
     ],
     mapColor: "#fffde7",
+    ballTypesForMap: getBallTypes("#fff176", "#ffeb3b", "#fbc02d", "#f57f17"),
   },
 ];

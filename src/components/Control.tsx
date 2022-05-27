@@ -125,6 +125,7 @@ const Result = styled.div`
 const MapsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 3rem;
 `;
 const Map = styled.div`
   margin-bottom: 2rem;
@@ -190,7 +191,6 @@ const Control: React.FC<IControlProps> = ({
         <StartButton color={level.levelColor} onClick={onClickStart}>
           Start
         </StartButton>
-        ;
       </Container>
     );
   }

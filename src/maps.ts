@@ -5,6 +5,9 @@ export const mapsCollection: IMap[] = [
   {
     id: "44d47291-d773-41e3-bdb4-e659fcedb214",
     name: "Cosmos",
+    levelBackground: "bg-canvas.svg",
+    mapColor: "#fff9c4",
+    ballTypesForMap: getBallTypes("#fff176", "#ffeb3b", "#fbc02d", "#f57f17"),
     levels: [
       {
         id: "1936d086-d704-425c-a735-df768888caf3",
@@ -12,7 +15,7 @@ export const mapsCollection: IMap[] = [
         ballsLimit: 30,
         timeOfBallDisplay: [1000, 3000],
         gameTime: 60,
-        levelColor: "#fff9c4",
+        levelColor: "#ffee58",
       },
       {
         id: "d79d7874-2e3a-4ba1-9877-0a35ca939a6e",
@@ -20,7 +23,7 @@ export const mapsCollection: IMap[] = [
         ballsLimit: 60,
         timeOfBallDisplay: [800, 2500],
         gameTime: 40,
-        levelColor: "#fff59d",
+        levelColor: "#fdd835",
       },
       {
         id: "fb55e93f-315b-4f53-9d23-95ea4d7428e0",
@@ -28,15 +31,16 @@ export const mapsCollection: IMap[] = [
         ballsLimit: 90,
         timeOfBallDisplay: [600, 2000],
         gameTime: 30,
-        levelColor: "#fff176",
+        levelColor: "#f9a825",
       },
     ],
-    mapColor: "#fffde7",
-    ballTypesForMap: getBallTypes("#fff176", "#ffeb3b", "#fbc02d", "#f57f17"),
   },
   {
     id: "089168e0-5884-4346-9967-c720f0cd4bd1",
     name: "Sea",
+    levelBackground: "sea.svg",
+    mapColor: "#d1c4e9",
+    ballTypesForMap: getBallTypes("#9575cd", "#673ab7", "#512da8", "#311b92"),
     levels: [
       {
         id: "089168e0-5884-4346-9967-c720f0cd4bd1",
@@ -44,7 +48,7 @@ export const mapsCollection: IMap[] = [
         ballsLimit: 30,
         timeOfBallDisplay: [1000, 3000],
         gameTime: 60,
-        levelColor: "#90caf9",
+        levelColor: "#7e57c2",
       },
       {
         id: "fe8529bb-2981-4dc4-83fe-d7db002082f7",
@@ -52,7 +56,7 @@ export const mapsCollection: IMap[] = [
         ballsLimit: 60,
         timeOfBallDisplay: [800, 2500],
         gameTime: 40,
-        levelColor: "#42a5f5",
+        levelColor: "#5e35b1",
       },
       {
         id: "8b7f2177-1612-46f7-b6cc-2444a28af9d9",
@@ -60,10 +64,74 @@ export const mapsCollection: IMap[] = [
         ballsLimit: 90,
         timeOfBallDisplay: [600, 2000],
         gameTime: 30,
-        levelColor: "#1e88e5",
+        levelColor: "#4527a0",
       },
     ],
-    mapColor: "#90caf9",
-    ballTypesForMap: getBallTypes("#64b5f6", "#2196f3", "#1976d2", "#0d47a1"),
+  },
+  {
+    id: "1730c40a-4303-4386-bd7a-2be316d6fd3e",
+    name: "Mountains",
+    levelBackground: "mountains.svg",
+    mapColor: "#d7ccc8",
+    ballTypesForMap: getBallTypes("#a1887f", "#795548", "#5d4037", "#3e2723"),
+    levels: [
+      {
+        id: "34dc3ad3-7a9b-4a9b-9510-ff234e094f98",
+        name: "1",
+        ballsLimit: 30,
+        timeOfBallDisplay: [1000, 3000],
+        gameTime: 60,
+        levelColor: "#8d6e63",
+      },
+      {
+        id: "0500cb7d-4ee9-4f4a-82d1-e22366be7fb0",
+        name: "2",
+        ballsLimit: 60,
+        timeOfBallDisplay: [800, 2500],
+        gameTime: 40,
+        levelColor: "#6d4c41",
+      },
+      {
+        id: "28e3bee6-e259-42a0-9faf-a1edb0521772",
+        name: "3",
+        ballsLimit: 90,
+        timeOfBallDisplay: [600, 2000],
+        gameTime: 30,
+        levelColor: "#4e342e",
+      },
+    ],
+  },
+  {
+    id: "682f0e54-f3fd-42af-9914-6bd8961485f0",
+    name: "Grassland",
+    levelBackground: "land.svg",
+    mapColor: "#c8e6c9",
+    ballTypesForMap: getBallTypes("#81c784", "#4caf50", "#388e3c", "#1b5e20"),
+    levels: [
+      {
+        id: "3ae8b332-5062-4f47-9363-3dcf0114cdc2",
+        name: "1",
+        ballsLimit: 30,
+        timeOfBallDisplay: [1000, 3000],
+        gameTime: 60,
+        levelColor: "#66bb6a",
+      },
+      {
+        id: "3293e256-f267-45c8-a3be-0782e46414c3",
+        name: "2",
+        ballsLimit: 60,
+        timeOfBallDisplay: [800, 2500],
+        gameTime: 40,
+        levelColor: "#43a047",
+      },
+      {
+        id: "57b6fd4c-bae2-4b48-969b-0f6a938af454",
+        name: "3",
+        ballsLimit: 90,
+        timeOfBallDisplay: [600, 2000],
+        gameTime: 30,
+        levelColor: "#2e7d32",
+      },
+    ],
   },
 ];

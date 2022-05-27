@@ -183,6 +183,7 @@ const useGame = (): GameReturnType => {
    */
   const changeStateOfGame = (state: GameStateEnum): void => {
     setGameState(state);
+    setScore(0);
   };
 
   /**

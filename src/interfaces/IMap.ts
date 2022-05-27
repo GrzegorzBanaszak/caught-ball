@@ -7,4 +7,5 @@ export default interface IMap {
   levels: ILevel[];
   mapColor: string;
   ballTypesForMap: IBallType[];
+  levelBackground: string;
 }

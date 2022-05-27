@@ -1,6 +1,4 @@
 import React from "react";
-
-import bg from "../assets/bg-canvas.svg";
 import useGame from "../hooks/useGame";
 import "../styles/canvas.css";
 import Ball from "./Ball";
@@ -25,7 +23,9 @@ const Canvas: React.FC = (): JSX.Element => {
 
   return (
     <main
-      style={{ backgroundImage: `url(${bg})` }}
+      style={{
+        backgroundImage: `url(${require("../assets/" + map.levelBackground)})`,
+      }}
       className="canvas-container"
     >
       {isPlaing && <Navigation roundTime={roundTime} score={score} />}

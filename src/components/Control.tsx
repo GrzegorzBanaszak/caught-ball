@@ -29,6 +29,9 @@ const Container = styled.div`
     font-size: 2rem;
     border-bottom: 3px solid white;
   }
+  @media (max-width: 425px) {
+    width: 80%;
+  }
 `;
 
 const LevelsList = styled.ul`
@@ -116,22 +119,38 @@ const TryAgainBtn = styled.button`
   font-size: 2rem;
   text-transform: uppercase;
   cursor: pointer;
+  @media (max-width: 425px) {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
 `;
 const Result = styled.div`
   color: white;
   font-size: 5rem;
+  @media (max-width: 425px) {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 `;
 
 const MapsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 3rem;
+  margin-bottom: 2rem;
+  @media (max-width: 425px) {
+    gap: 1rem;
+  }
 `;
 const Map = styled.div`
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 425px) {
+    width: 45%;
+  }
 `;
 
 const MapBall = styled.div<{ color: string }>`
@@ -197,7 +216,7 @@ const Control: React.FC<IControlProps> = ({
   if (gameState === GameStateEnum.Result) {
     return (
       <Container>
-        <Result>You result is {score} pt </Result>;
+        <Result>You result is {score} pt </Result>
         <TryAgainBtn onClick={() => changeStateOfGame(GameStateEnum.Start)}>
           Try again
         </TryAgainBtn>

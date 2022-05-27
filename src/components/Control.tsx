@@ -10,6 +10,7 @@ interface IControlProps {
   level: ILevel;
   map: IMap;
   selectLevel: (levelId: string) => void;
+  changeStateOfGame: (state: GameStateEnum) => void;
 }
 
 const Container = styled.div`
@@ -58,18 +59,19 @@ const LevelSelect = styled.li<ILevelSelectProps>`
   cursor: pointer;
 `;
 
-const StarButtonKeyfram = keyframes`
+const changeStartButtonNeonColor = (color: string) => {
+  return keyframes`
 100% {
     /* Larger blur radius */
     text-shadow:
       0 0 4px #fff,
       0 0 11px #fff,
       0 0 19px #fff,
-      0 0 40px #0fa,
-      0 0 80px #0fa,
-      0 0 90px #0fa,
-      0 0 100px #0fa,
-      0 0 150px #0fa;
+      0 0 40px ${color},
+      0 0 80px ${color},
+      0 0 90px ${color},
+      0 0 100px ${color},
+      0 0 150px ${color};
   }
   0% {
     /* Smaller blur radius */
@@ -77,15 +79,16 @@ const StarButtonKeyfram = keyframes`
       0 0 2px #fff,
       0 0 4px #fff,
       0 0 6px #fff,
-      0 0 10px #0fa,
-      0 0 45px #0fa,
-      0 0 55px #0fa,
-      0 0 70px #0fa,
-      0 0 80px #0fa;
+      0 0 10px ${color},
+      0 0 45px ${color},
+      0 0 55px ${color},
+      0 0 70px ${color},
+      0 0 80px ${color};
   }
 `;
+};
 
-const StartButton = styled.button`
+const StartButton = styled.button<{ color: string }>`
   color: white;
   display: block;
   margin: 0 auto;
@@ -94,10 +97,24 @@ const StartButton = styled.button`
   border: none;
   font-size: 5rem;
   background-color: transparent;
-  animation: ${StarButtonKeyfram} 2.5s infinite alternate;
+  animation: ${(props) => changeStartButtonNeonColor(props.color)} 2.5s infinite
+    alternate;
   cursor: pointer;
 `;
 
+const TryAgainBtn = styled.button`
+  color: black;
+  background-color: white;
+  display: block;
+  margin: 0 auto;
+  border-radius: 25px;
+  padding: 2rem;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+`;
 const Result = styled.div`
   color: white;
   font-size: 5rem;
@@ -109,6 +126,7 @@ const Control: React.FC<IControlProps> = ({
   level,
   map,
   selectLevel,
+  changeStateOfGame,
 }): JSX.Element => {
   if (gameState === GameStateEnum.Start) {
     return (
@@ -126,7 +144,10 @@ const Control: React.FC<IControlProps> = ({
             </LevelSelect>
           ))}
         </LevelsList>
-        <StartButton onClick={onClickStart}>Start</StartButton>;
+        <StartButton color={level.levelColor} onClick={onClickStart}>
+          Start
+        </StartButton>
+        ;
       </Container>
     );
   }
@@ -134,6 +155,9 @@ const Control: React.FC<IControlProps> = ({
     return (
       <Container>
         <Result>You result is {score} pt </Result>;
+        <TryAgainBtn onClick={() => changeStateOfGame(GameStateEnum.Start)}>
+          Try again
+        </TryAgainBtn>
       </Container>
     );
   }

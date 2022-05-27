@@ -17,6 +17,7 @@ type GameReturnType = {
   level: ILevel;
   map: IMap;
   selectLevel: (levelId: string) => void;
+  changeStateOfGame: (state: GameStateEnum) => void;
 };
 
 const useGame = (): GameReturnType => {
@@ -176,6 +177,14 @@ const useGame = (): GameReturnType => {
   };
 
   /**
+   * Change state of game
+   * @param state What display
+   */
+  const changeStateOfGame = (state: GameStateEnum): void => {
+    setGameState(state);
+  };
+
+  /**
    * Change current level
    * @param levelId Id selected level
    */
@@ -197,6 +206,7 @@ const useGame = (): GameReturnType => {
     level,
     map,
     selectLevel,
+    changeStateOfGame,
   };
 };
 

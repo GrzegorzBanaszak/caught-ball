@@ -9,7 +9,7 @@ type GameReturnType = {
   roundTime: number;
   score: number;
   isPlaing: boolean;
-  gameState: string;
+  gameState: GameStateEnum;
   onBallClick: (ballId: string, pointsToAdd: number) => void;
   onClickStart: () => void;
 };
@@ -19,7 +19,9 @@ const useGame = (): GameReturnType => {
   const [roundTime, setRoundTime] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [level, setLevel] = useState<number>(1);
-  const [gameState, setGameState] = useState<string>(GameStateEnum.Start);
+  const [gameState, setGameState] = useState<GameStateEnum>(
+    GameStateEnum.Start
+  );
   const [isPlaing, setIsPlaing] = useState(false);
 
   useEffect(() => {

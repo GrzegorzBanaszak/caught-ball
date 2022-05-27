@@ -1,11 +1,51 @@
-import React from 'react'
-import { GameStateEnum } from '../interfaces/GameStatEnum';
-import styled, { keyframes } from 'styled-components'
+import React from "react";
+import { GameStateEnum } from "../interfaces/GameStatEnum";
+import styled, { keyframes } from "styled-components";
 interface IControlProps {
-    gameState: string;
+    gameState: GameStateEnum;
     onClickStart: () => void;
     score: number;
 }
+
+const Container = styled.div`
+  font-family: "Fredoka One", cursive;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  h4{
+      font-weight:400 ;
+      text-align:center ;
+      color:white;
+      font-size:2rem ;
+      border-bottom:3px solid white ;
+      
+  }
+`;
+
+const LevelsList = styled.ul`
+    margin:3rem 0 ;
+    display: flex ;
+    justify-content:center ;
+    list-style-type:none ;
+    font-size:2rem ;
+    gap:3rem;
+    li{
+        width:4rem ;
+        height:4rem ;
+        display:flex ;
+        align-items:center ;
+        justify-content:center ;
+        background-color:white;
+        color:black;
+        border-radius:10px ;
+        border:2px solid #fff ;
+        box-shadow: 0 0 10px #0fa, 0 0 40px #0fa, 0 0 80px #0fa;
+        cursor: pointer;
+    }
+`
+
 const StarButtonKeyfram = keyframes`
 100% {
     /* Larger blur radius */
@@ -31,44 +71,54 @@ const StarButtonKeyfram = keyframes`
       0 0 70px #0fa,
       0 0 80px #0fa;
   }
-`
+`;
 
 const StartButton = styled.button`
-font-family: 'Fredoka One', cursive;
-  position:absolute ;
-  z-index:2;
-  top: 50%;
-  left: 50%;
-  transform:translate(-50%,-50%) ;
-  color:white;
-  padding:2rem ;
-  outline:none ;
-  border:none ;
-  font-size:5rem ;
-  background-color:transparent;
-  animation: ${StarButtonKeyfram} 2.5s infinite alternate;  
-    cursor:pointer;
-`
+  color: white;
+  display:block ;
+  margin:0 auto ;
+  padding: 2rem;
+  outline: none;
+  border: none;
+  font-size: 5rem;
+  background-color: transparent;
+  animation: ${StarButtonKeyfram} 2.5s infinite alternate;
+  cursor: pointer;
+`;
 
 const Result = styled.div`
-  position:absolute ;
-  z-index:2;
-  top: 50%;
-  left: 50%;
-  transform:translate(-50%,-50%) ;
-  color:white;
-  font-size:5rem ;
-`
-const Control: React.FC<IControlProps> = ({ gameState, onClickStart, score }): JSX.Element => {
+  color: white;
+  font-size: 5rem;
+`;
+const Control: React.FC<IControlProps> = ({
+    gameState,
+    onClickStart,
+    score,
+}): JSX.Element => {
     if (gameState === GameStateEnum.Start) {
-        <StartButton onClick={onClickStart}>Start</StartButton>
+        return (
+            <Container>
+                <h4>Select Level</h4>
+                <LevelsList>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </LevelsList>
+                <StartButton onClick={onClickStart}>Start</StartButton>;
+            </Container>
+        )
+
+
     }
     if (gameState === GameStateEnum.Result) {
-        <Result>You result is {score} pt </Result>
-    }
-    return (
-        <div>Controler</div>
-    )
-}
+        return (
+            <Container>
+                <Result>You result is {score} pt </Result>;
+            </Container>
+        )
 
-export default Control
+    }
+    return <div>Controler</div>;
+};
+
+export default Control;

@@ -48,6 +48,7 @@ const neonEffecApplay = (color: string) => keyframes`
 
 //Div styled element
 const BallElement = styled.div<IBallElementProps>`
+  cursor: pointer;
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   border-radius: 50%;

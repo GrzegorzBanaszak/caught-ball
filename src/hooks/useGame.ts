@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import IBall from "../interfaces/IBall";
+import { GameStateEnum } from "../interfaces/GameStatEnum";
 type GameReturnType = {
   balls: IBall[];
   roundTime: number;
@@ -13,14 +14,12 @@ type GameReturnType = {
   onClickStart: () => void;
 };
 
-const gameStates: string[] = ["Start", "Plaing", "Result"];
-
 const useGame = (): GameReturnType => {
   const [balls, setBalls] = useState<IBall[]>([]);
   const [roundTime, setRoundTime] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [level, setLevel] = useState<number>(1);
-  const [gameState, setGameState] = useState<string>(gameStates[0]);
+  const [gameState, setGameState] = useState<string>(GameStateEnum.Start);
   const [isPlaing, setIsPlaing] = useState(false);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ const useGame = (): GameReturnType => {
           if (prev - 2 < 0) {
             setIsPlaing(false);
             setBalls([]);
-            setGameState(gameStates[2]);
+            setGameState(GameStateEnum.Result);
           }
           return prev - 1;
         }
@@ -125,6 +124,7 @@ const useGame = (): GameReturnType => {
 
   const onClickStart = (): void => {
     setIsPlaing(true);
+    setGameState(GameStateEnum.Plaing);
   };
 
   return {

@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e71e6551.css",
+    "main.js": "/static/js/main.fa937c4f.js",
+    "static/media/mountains.svg": "/static/media/mountains.3032bcc9cc485e317187.svg",
+    "static/media/bg-canvas.svg": "/static/media/bg-canvas.f20736d3070a997a17c8.svg",
+    "static/media/sea.svg": "/static/media/sea.6a00ad2c86d1953e4f71.svg",
+    "static/media/land.svg": "/static/media/land.8ec8a9ad4d1b75f0b6e0.svg",
+    "index.html": "/index.html",
+    "main.e71e6551.css.map": "/static/css/main.e71e6551.css.map",
+    "main.fa937c4f.js.map": "/static/js/main.fa937c4f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e71e6551.css",
+    "static/js/main.fa937c4f.js"
+  ]
+}

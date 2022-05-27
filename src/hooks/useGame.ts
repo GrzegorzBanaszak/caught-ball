@@ -15,6 +15,9 @@ type GameReturnType = {
   gameState: GameStateEnum;
   onBallClick: (ballId: string, pointsToAdd: number) => void;
   onClickStart: () => void;
+  level: ILevel;
+  map: IMap;
+  selectLevel: (levelId: string) => void;
 };
 
 const useGame = (): GameReturnType => {
@@ -173,6 +176,17 @@ const useGame = (): GameReturnType => {
     setGameState(GameStateEnum.Plaing);
   };
 
+  /**
+   * Change current level
+   * @param levelId Id selected level
+   */
+  const selectLevel = (levelId: string): void => {
+    const selectedLevel = map.levels.find((level) => level.id === levelId);
+    if (selectedLevel !== undefined) {
+      setLevel(selectedLevel);
+    }
+  };
+
   return {
     balls,
     roundTime,
@@ -181,6 +195,9 @@ const useGame = (): GameReturnType => {
     isPlaing,
     onClickStart,
     gameState,
+    level,
+    map,
+    selectLevel,
   };
 };
 

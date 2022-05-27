@@ -18,7 +18,7 @@ export const mapsCollection: IMap[] = [
         name: "2",
         ballsLimit: 60,
         timeOfBallDisplay: [800, 2500],
-        gameTime: 60,
+        gameTime: 40,
         levelColor: "#fff59d",
       },
       {
@@ -26,7 +26,7 @@ export const mapsCollection: IMap[] = [
         name: "3",
         ballsLimit: 90,
         timeOfBallDisplay: [600, 2000],
-        gameTime: 60,
+        gameTime: 30,
         levelColor: "#fff176",
       },
     ],

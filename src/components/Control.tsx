@@ -12,6 +12,7 @@ interface IControlProps {
   map: IMap;
   selectLevel: (levelId: string) => void;
   changeStateOfGame: (state: GameStateEnum) => void;
+  selectMap: (mapId: string) => void;
 }
 
 const Container = styled.div`
@@ -157,6 +158,7 @@ const Control: React.FC<IControlProps> = ({
   map,
   selectLevel,
   changeStateOfGame,
+  selectMap,
 }): JSX.Element => {
   if (gameState === GameStateEnum.Start) {
     return (
@@ -164,7 +166,10 @@ const Control: React.FC<IControlProps> = ({
         <MapsContainer>
           {mapsCollection.map((mapElement) => (
             <Map key={mapElement.id}>
-              <MapBall color={mapElement.mapColor} />
+              <MapBall
+                color={mapElement.mapColor}
+                onClick={() => selectMap(mapElement.id)}
+              />
               <MapName color={mapElement.mapColor}>{mapElement.name}</MapName>
             </Map>
           ))}

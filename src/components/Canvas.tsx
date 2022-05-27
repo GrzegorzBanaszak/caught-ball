@@ -20,6 +20,7 @@ const Canvas: React.FC = (): JSX.Element => {
     map,
     selectLevel,
     changeStateOfGame,
+    selectMap,
   } = useGame();
 
   return (
@@ -52,6 +53,7 @@ const Canvas: React.FC = (): JSX.Element => {
           score={score}
           selectLevel={selectLevel}
           changeStateOfGame={changeStateOfGame}
+          selectMap={selectMap}
         />
       )}
     </main>

@@ -18,6 +18,7 @@ type GameReturnType = {
   map: IMap;
   selectLevel: (levelId: string) => void;
   changeStateOfGame: (state: GameStateEnum) => void;
+  selectMap: (mapId: string) => void;
 };
 
 const useGame = (): GameReturnType => {
@@ -194,7 +195,17 @@ const useGame = (): GameReturnType => {
       setLevel(selectedLevel);
     }
   };
-
+  /**
+   * Change current map and level
+   * @param mapId Id selected map
+   */
+  const selectMap = (mapId: string): void => {
+    const selectedMap = mapsCollection.find((map) => map.id === mapId);
+    if (selectedMap !== undefined) {
+      setLevel(selectedMap.levels[0]);
+      setMap(selectedMap);
+    }
+  };
   return {
     balls,
     roundTime,
@@ -207,6 +218,7 @@ const useGame = (): GameReturnType => {
     map,
     selectLevel,
     changeStateOfGame,
+    selectMap,
   };
 };
 

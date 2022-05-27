@@ -3,6 +3,7 @@ import { GameStateEnum } from "../interfaces/GameStatEnum";
 import styled, { keyframes } from "styled-components";
 import ILevel from "../interfaces/ILevel";
 import IMap from "../interfaces/IMap";
+import { mapsCollection } from "../maps";
 interface IControlProps {
   gameState: GameStateEnum;
   onClickStart: () => void;
@@ -119,6 +120,35 @@ const Result = styled.div`
   color: white;
   font-size: 5rem;
 `;
+
+const MapsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Map = styled.div`
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MapBall = styled.div<{ color: string }>`
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff,
+    0 0 10px ${(props) => props.color}, 0 0 45px ${(props) => props.color},
+    0 0 55px ${(props) => props.color}, 0 0 60px ${(props) => props.color},
+    0 0 70px ${(props) => props.color};
+  cursor: pointer;
+`;
+const MapName = styled.h3<{ color: string }>`
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: ${(props) => props.color};
+`;
 const Control: React.FC<IControlProps> = ({
   gameState,
   onClickStart,
@@ -131,6 +161,14 @@ const Control: React.FC<IControlProps> = ({
   if (gameState === GameStateEnum.Start) {
     return (
       <Container>
+        <MapsContainer>
+          {mapsCollection.map((mapElement) => (
+            <Map key={mapElement.id}>
+              <MapBall color={mapElement.mapColor} />
+              <MapName color={mapElement.mapColor}>{mapElement.name}</MapName>
+            </Map>
+          ))}
+        </MapsContainer>
         <h4>Select Level</h4>
         <LevelsList>
           {map.levels.map((levelElement) => (

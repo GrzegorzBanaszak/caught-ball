@@ -34,4 +34,36 @@ export const mapsCollection: IMap[] = [
     mapColor: "#fffde7",
     ballTypesForMap: getBallTypes("#fff176", "#ffeb3b", "#fbc02d", "#f57f17"),
   },
+  {
+    id: "089168e0-5884-4346-9967-c720f0cd4bd1",
+    name: "Sea",
+    levels: [
+      {
+        id: "089168e0-5884-4346-9967-c720f0cd4bd1",
+        name: "1",
+        ballsLimit: 30,
+        timeOfBallDisplay: [1000, 3000],
+        gameTime: 60,
+        levelColor: "#90caf9",
+      },
+      {
+        id: "fe8529bb-2981-4dc4-83fe-d7db002082f7",
+        name: "2",
+        ballsLimit: 60,
+        timeOfBallDisplay: [800, 2500],
+        gameTime: 40,
+        levelColor: "#42a5f5",
+      },
+      {
+        id: "8b7f2177-1612-46f7-b6cc-2444a28af9d9",
+        name: "3",
+        ballsLimit: 90,
+        timeOfBallDisplay: [600, 2000],
+        gameTime: 30,
+        levelColor: "#1e88e5",
+      },
+    ],
+    mapColor: "#90caf9",
+    ballTypesForMap: getBallTypes("#64b5f6", "#2196f3", "#1976d2", "#0d47a1"),
+  },
 ];

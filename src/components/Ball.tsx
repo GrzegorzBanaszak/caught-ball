@@ -1,10 +1,9 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import "../styles/ball.css";
 
 //Props interface for Ball
 interface IBallProps {
-  ballId: string
+  ballId: string;
   size: number;
   positionX: number;
   positionY: number;
@@ -43,8 +42,7 @@ const neonEffecApplay = (color: string) => keyframes`
       0 0 70px ${color},
       0 0 80px ${color};
   }
-`
-
+`;
 
 //Div styled element
 const BallElement = styled.div<IBallElementProps>`
@@ -52,9 +50,9 @@ const BallElement = styled.div<IBallElementProps>`
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   border-radius: 50%;
-  background-color:white ;
+  background-color: white;
   position: absolute;
-  display:block ;
+  display: block;
   z-index: 3;
   top: ${(props) => `${props.positionY}px`};
   left: ${(props) => `${props.positionX}px`};
@@ -68,12 +66,11 @@ const Ball: React.FC<IBallProps> = ({
   color,
   onBallClick,
   ballId,
-  points
+  points,
 }): JSX.Element => {
-
   const handleClickBall = () => {
-    setTimeout(() => onBallClick(ballId, points), 100)
-  }
+    setTimeout(() => onBallClick(ballId, points), 100);
+  };
   return (
     <BallElement
       onClick={handleClickBall}
@@ -82,7 +79,7 @@ const Ball: React.FC<IBallProps> = ({
       positionY={positionY}
       color={color}
     ></BallElement>
-  )
+  );
 };
 
 export default Ball;

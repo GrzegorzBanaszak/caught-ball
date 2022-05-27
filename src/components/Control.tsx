@@ -31,6 +31,9 @@ const Container = styled.div`
   }
   @media (max-width: 425px) {
     width: 80%;
+    h4 {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -39,7 +42,6 @@ const LevelsList = styled.ul`
   display: flex;
   justify-content: center;
   list-style-type: none;
-  font-size: 2rem;
   gap: 3rem;
 `;
 
@@ -57,11 +59,18 @@ const LevelSelect = styled.li<ILevelSelectProps>`
   color: black;
   border-radius: 10px;
   border: 2px solid #fff;
+  font-size: 2rem;
+
   ${(props) =>
     props.isSelect &&
     `box-shadow: 0 0 10px ${props.color}, 0 0 40px ${props.color}, 0 0 80px ${props.color};`}
 
   cursor: pointer;
+  @media (max-width: 425px) {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.2rem;
+  }
 `;
 
 const changeStartButtonNeonColor = (color: string) => {
@@ -105,6 +114,9 @@ const StartButton = styled.button<{ color: string }>`
   animation: ${(props) => changeStartButtonNeonColor(props.color)} 2.5s infinite
     alternate;
   cursor: pointer;
+  @media (max-width: 425px) {
+    font-size: 3.5rem;
+  }
 `;
 
 const TryAgainBtn = styled.button`
@@ -163,6 +175,11 @@ const MapBall = styled.div<{ color: string }>`
     0 0 55px ${(props) => props.color}, 0 0 60px ${(props) => props.color},
     0 0 70px ${(props) => props.color};
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  @media (max-width: 425px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 const MapName = styled.h3<{ color: string }>`
   margin-top: 0.5rem;

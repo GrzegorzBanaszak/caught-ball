@@ -47,8 +47,8 @@ const neonEffecApplay = (color: string) => keyframes`
 //Div styled element
 const BallElement = styled.div<IBallElementProps>`
   cursor: pointer;
-  width: ${(props) => `${props.size}px`};
-  height: ${(props) => `${props.size}px`};
+  width: ${(props) => `${props.size}rem`};
+  height: ${(props) => `${props.size}rem`};
   border-radius: 50%;
   background-color: white;
   position: absolute;
@@ -57,6 +57,8 @@ const BallElement = styled.div<IBallElementProps>`
   top: ${(props) => `${props.positionY}px`};
   left: ${(props) => `${props.positionX}px`};
   animation: ${(props) => neonEffecApplay(props.color)} 0.4s infinite alternate;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const Ball: React.FC<IBallProps> = ({

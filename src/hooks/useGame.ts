@@ -93,17 +93,18 @@ const useGame = (): GameReturnType => {
   const randomPositonBall = (size: number) => {
     let positionX = getRandomInt(0, window.innerWidth);
     let positionY = getRandomInt(104, window.innerHeight);
-    if (positionX + size > window.innerWidth) {
-      positionX = positionX - size;
+    const sizeInPx = size * 16;
+    if (positionX + sizeInPx * 16 > window.innerWidth) {
+      positionX = positionX - sizeInPx;
     }
-    if (positionX - size < 0) {
-      positionX = positionX + size;
+    if (positionX - sizeInPx < 0) {
+      positionX = positionX + sizeInPx;
     }
-    if (positionY + size > window.innerHeight) {
-      positionY = positionY - size;
+    if (positionY + sizeInPx > window.innerHeight) {
+      positionY = positionY - sizeInPx;
     }
-    if (positionY - size < 104) {
-      positionY = positionY + size;
+    if (positionY - sizeInPx < 104) {
+      positionY = positionY + sizeInPx;
     }
 
     return { positionX, positionY };

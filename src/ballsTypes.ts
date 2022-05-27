@@ -16,52 +16,52 @@ export const getBallTypes = (
 ): IBallType[] => {
   return [
     {
-      size: 80,
+      size: 5,
       color: colorBall80,
       points: 30,
     },
     {
-      size: 80,
+      size: 5,
       color: colorBall80,
       points: 30,
     },
     {
-      size: 80,
+      size: 5,
       color: colorBall80,
       points: 30,
     },
     {
-      size: 80,
+      size: 5,
       color: colorBall80,
       points: 30,
     },
     {
-      size: 60,
+      size: 3.75,
       color: colorBall60,
       points: 50,
     },
     {
-      size: 60,
+      size: 3.75,
       color: colorBall60,
       points: 50,
     },
     {
-      size: 60,
+      size: 3.75,
       color: colorBall60,
       points: 50,
     },
     {
-      size: 40,
+      size: 2.5,
       color: colorBall40,
       points: 70,
     },
     {
-      size: 40,
+      size: 2.5,
       color: colorBall40,
       points: 70,
     },
     {
-      size: 30,
+      size: 1.875,
       color: colorBall30,
       points: 100,
     },

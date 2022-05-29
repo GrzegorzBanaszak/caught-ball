@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/caught-ball/static/css/main.e71e6551.css",
-    "main.js": "/caught-ball/static/js/main.adba94f4.js",
+    "main.css": "/caught-ball/static/css/main.342d8073.css",
+    "main.js": "/caught-ball/static/js/main.3de27072.js",
     "static/media/mountains.svg": "/caught-ball/static/media/mountains.3032bcc9cc485e317187.svg",
     "static/media/bg-canvas.svg": "/caught-ball/static/media/bg-canvas.f20736d3070a997a17c8.svg",
     "static/media/sea.svg": "/caught-ball/static/media/sea.6a00ad2c86d1953e4f71.svg",
     "static/media/land.svg": "/caught-ball/static/media/land.8ec8a9ad4d1b75f0b6e0.svg",
     "index.html": "/caught-ball/index.html",
-    "main.e71e6551.css.map": "/caught-ball/static/css/main.e71e6551.css.map",
-    "main.adba94f4.js.map": "/caught-ball/static/js/main.adba94f4.js.map"
+    "main.342d8073.css.map": "/caught-ball/static/css/main.342d8073.css.map",
+    "main.3de27072.js.map": "/caught-ball/static/js/main.3de27072.js.map"
   },
   "entrypoints": [
-    "static/css/main.e71e6551.css",
-    "static/js/main.adba94f4.js"
+    "static/css/main.342d8073.css",
+    "static/js/main.3de27072.js"
   ]
 }

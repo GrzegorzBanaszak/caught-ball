@@ -1,9 +1,10 @@
 import React from "react";
-import useGame from "../hooks/useGame";
-import "../styles/canvas.css";
-import Ball from "./Ball";
-import Control from "./Control";
-import Navigation from "./Navigation";
+import useGame from "../../hooks/useGame";
+import Ball from "../Ball";
+import Control from "../Control";
+import Navigation from "../Navigation";
+import Scored from "../Scored";
+import { CanvasContainer } from "./components";
 
 const Canvas: React.FC = (): JSX.Element => {
   const {
@@ -19,15 +20,11 @@ const Canvas: React.FC = (): JSX.Element => {
     selectLevel,
     changeStateOfGame,
     selectMap,
+    scoreds,
   } = useGame();
 
   return (
-    <main
-      style={{
-        backgroundImage: `url(${require("../assets/" + map.levelBackground)})`,
-      }}
-      className="canvas-container"
-    >
+    <CanvasContainer bgImage={require("../../assets/" + map.levelBackground)}>
       {isPlaing && <Navigation roundTime={roundTime} score={score} />}
       {balls.map((item) => {
         const { size, positionX, positionY, color, id, points } = item;
@@ -44,6 +41,18 @@ const Canvas: React.FC = (): JSX.Element => {
           />
         );
       })}
+      {scoreds.map((scored) => {
+        const { id, color, points, positionX, positionY } = scored;
+        return (
+          <Scored
+            key={id}
+            color={color}
+            points={points}
+            positionX={positionX}
+            positionY={positionY}
+          />
+        );
+      })}
       {!isPlaing && (
         <Control
           map={map}
@@ -56,7 +65,7 @@ const Canvas: React.FC = (): JSX.Element => {
           selectMap={selectMap}
         />
       )}
-    </main>
+    </CanvasContainer>
   );
 };
 

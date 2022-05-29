@@ -1,21 +1,7 @@
-import React from "react";
-import { GameStateEnum } from "../interfaces/GameStatEnum";
 import styled, { keyframes } from "styled-components";
-import ILevel from "../interfaces/ILevel";
-import IMap from "../interfaces/IMap";
-import { mapsCollection } from "../maps";
-interface IControlProps {
-  gameState: GameStateEnum;
-  onClickStart: () => void;
-  score: number;
-  level: ILevel;
-  map: IMap;
-  selectLevel: (levelId: string) => void;
-  changeStateOfGame: (state: GameStateEnum) => void;
-  selectMap: (mapId: string) => void;
-}
+import { ILevelSelectProps } from "../../interfaces/ILevelSelectProps";
 
-const Container = styled.div`
+export const Container = styled.div`
   font-family: "Fredoka One", cursive;
   position: absolute;
   z-index: 2;
@@ -37,7 +23,7 @@ const Container = styled.div`
   }
 `;
 
-const LevelsList = styled.ul`
+export const LevelsList = styled.ul`
   margin: 3rem 0;
   display: flex;
   justify-content: center;
@@ -45,11 +31,7 @@ const LevelsList = styled.ul`
   gap: 3rem;
 `;
 
-interface ILevelSelectProps {
-  isSelect: boolean;
-  color: string;
-}
-const LevelSelect = styled.li<ILevelSelectProps>`
+export const LevelSelect = styled.li<ILevelSelectProps>`
   width: 4rem;
   height: 4rem;
   display: flex;
@@ -102,7 +84,7 @@ const changeStartButtonNeonColor = (color: string) => {
 `;
 };
 
-const StartButton = styled.button<{ color: string }>`
+export const StartButton = styled.button<{ color: string }>`
   color: white;
   display: block;
   margin: 0 auto;
@@ -119,7 +101,7 @@ const StartButton = styled.button<{ color: string }>`
   }
 `;
 
-const TryAgainBtn = styled.button`
+export const TryAgainBtn = styled.button`
   color: black;
   background-color: white;
   display: block;
@@ -136,7 +118,7 @@ const TryAgainBtn = styled.button`
     font-size: 1.2rem;
   }
 `;
-const Result = styled.div`
+export const Result = styled.div`
   color: white;
   font-size: 5rem;
   @media (max-width: 425px) {
@@ -146,7 +128,7 @@ const Result = styled.div`
   }
 `;
 
-const MapsContainer = styled.div`
+export const MapsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -156,7 +138,7 @@ const MapsContainer = styled.div`
     gap: 1rem;
   }
 `;
-const Map = styled.div`
+export const Map = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,7 +147,7 @@ const Map = styled.div`
   }
 `;
 
-const MapBall = styled.div<{ color: string }>`
+export const MapBall = styled.div<{ color: string }>`
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -181,66 +163,9 @@ const MapBall = styled.div<{ color: string }>`
     height: 3rem;
   }
 `;
-const MapName = styled.h3<{ color: string }>`
+export const MapName = styled.h3<{ color: string }>`
   margin-top: 0.5rem;
   text-align: center;
   font-size: 1.4rem;
   color: ${(props) => props.color};
 `;
-const Control: React.FC<IControlProps> = ({
-  gameState,
-  onClickStart,
-  score,
-  level,
-  map,
-  selectLevel,
-  changeStateOfGame,
-  selectMap,
-}): JSX.Element => {
-  if (gameState === GameStateEnum.Start) {
-    return (
-      <Container>
-        <MapsContainer>
-          {mapsCollection.map((mapElement) => (
-            <Map key={mapElement.id}>
-              <MapBall
-                color={mapElement.mapColor}
-                onClick={() => selectMap(mapElement.id)}
-              />
-              <MapName color={mapElement.mapColor}>{mapElement.name}</MapName>
-            </Map>
-          ))}
-        </MapsContainer>
-        <h4>Select Level</h4>
-        <LevelsList>
-          {map.levels.map((levelElement) => (
-            <LevelSelect
-              isSelect={level.id === levelElement.id}
-              color={levelElement.levelColor}
-              key={levelElement.id}
-              onClick={() => selectLevel(levelElement.id)}
-            >
-              {levelElement.name}
-            </LevelSelect>
-          ))}
-        </LevelsList>
-        <StartButton color={level.levelColor} onClick={onClickStart}>
-          Start
-        </StartButton>
-      </Container>
-    );
-  }
-  if (gameState === GameStateEnum.Result) {
-    return (
-      <Container>
-        <Result>You result is {score} pt </Result>
-        <TryAgainBtn onClick={() => changeStateOfGame(GameStateEnum.Start)}>
-          Try again
-        </TryAgainBtn>
-      </Container>
-    );
-  }
-  return <div>Controler</div>;
-};
-
-export default Control;

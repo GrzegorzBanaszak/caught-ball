@@ -1,25 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import IBall from "../interfaces/IBall";
-import { GameStateEnum } from "../interfaces/GameStatEnum";
-import { mapsCollection } from "../maps";
-import IMap from "../interfaces/IMap";
-import ILevel from "../interfaces/ILevel";
-type GameReturnType = {
-  balls: IBall[];
-  roundTime: number;
-  score: number;
-  isPlaing: boolean;
-  gameState: GameStateEnum;
-  onBallClick: (ballId: string, pointsToAdd: number) => void;
-  onClickStart: () => void;
-  level: ILevel;
-  map: IMap;
-  selectLevel: (levelId: string) => void;
-  changeStateOfGame: (state: GameStateEnum) => void;
-  selectMap: (mapId: string) => void;
-};
+import IBall from "../../interfaces/IBall";
+import { GameStateEnum } from "../../interfaces/GameStatEnum";
+import { mapsCollection } from "../../maps";
+import IMap from "../../interfaces/IMap";
+import ILevel from "../../interfaces/ILevel";
+import { getRandomInt, randomPositonBall } from "./universal";
+import { GameReturnType } from "../../interfaces/GameReturnType";
+import IScore from "../../interfaces/IScore";
 
 const useGame = (): GameReturnType => {
   const [balls, setBalls] = useState<IBall[]>([]);
@@ -27,6 +16,7 @@ const useGame = (): GameReturnType => {
   const [score, setScore] = useState<number>(0);
   const [map, setMap] = useState<IMap>(mapsCollection[0]);
   const [level, setLevel] = useState<ILevel>(mapsCollection[0].levels[0]);
+  const [scoreds, setScored] = useState<IScore[]>([]);
   const [gameState, setGameState] = useState<GameStateEnum>(
     GameStateEnum.Start
   );
@@ -73,42 +63,6 @@ const useGame = (): GameReturnType => {
     }, 1000);
     return timeIntervalId;
   };
-  /**
-   * Create timer when game is start
-   * @param min minimal range value
-   * @param max maximum range value
-   * @returns random number value form min - max range
-   */
-  function getRandomInt(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  /**
-   * Create random position on screen
-   * @param size Size of ball
-   * @returns position x and y in screen
-   */
-  const randomPositonBall = (size: number) => {
-    let positionX = getRandomInt(0, window.innerWidth);
-    let positionY = getRandomInt(104, window.innerHeight);
-    const sizeInPx = size * 16;
-    if (positionX + sizeInPx * 16 > window.innerWidth) {
-      positionX = positionX - sizeInPx;
-    }
-    if (positionX - sizeInPx < 0) {
-      positionX = positionX + sizeInPx;
-    }
-    if (positionY + sizeInPx > window.innerHeight) {
-      positionY = positionY - sizeInPx;
-    }
-    if (positionY - sizeInPx < 104) {
-      positionY = positionY + sizeInPx;
-    }
-
-    return { positionX, positionY };
-  };
 
   /**
    * Generate random ball from balls type and display on screen
@@ -154,6 +108,22 @@ const useGame = (): GameReturnType => {
       points,
     };
   };
+
+  const createScored = (
+    color: string,
+    positionX: number,
+    positionY: number,
+    points: string
+  ): void => {
+    const id = uuidv4();
+    setTimeout(() => removeScored(id), 1500);
+    setScored((prev) => [...prev, { id, positionX, positionY, color, points }]);
+  };
+
+  const removeScored = (id: string): void => {
+    setScored((prev) => prev.filter((scored) => scored.id !== id));
+  };
+
   /**
    * Remove ball from balls list
    * @param ballId Id of ball to remove
@@ -165,9 +135,20 @@ const useGame = (): GameReturnType => {
    * Remove ball on click and add points
    * @param ballId Id of ball to remove
    * @param pointsToAdd Points to add
+   * @param positionX Positon in X cordiante
+   * @param positonY Positon in Y cordiante
    */
-  const onBallClick = (ballId: string, pointsToAdd: number): void => {
-    if (isPlaing) setScore((prev) => prev + pointsToAdd);
+  const onBallClick = (
+    ballId: string,
+    pointsToAdd: number,
+    positionX: number,
+    positonY: number
+  ): void => {
+    if (isPlaing) {
+      setScore((prev) => prev + pointsToAdd);
+      createScored("green", positionX, positonY, String(pointsToAdd));
+    }
+
     setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
   };
   /**
@@ -221,6 +202,7 @@ const useGame = (): GameReturnType => {
     selectLevel,
     changeStateOfGame,
     selectMap,
+    scoreds,
   };
 };
 

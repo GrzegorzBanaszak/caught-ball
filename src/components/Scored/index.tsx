@@ -1,5 +1,5 @@
 import React from "react";
-import IScoreProps from "../../interfaces/IScoreProps";
+import IScoreProps from "../../interfaces/IScore";
 import { ScoreContainer } from "./components";
 
 const Scored: React.FC<IScoreProps> = ({

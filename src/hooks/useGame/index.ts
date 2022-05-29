@@ -8,6 +8,7 @@ import IMap from "../../interfaces/IMap";
 import ILevel from "../../interfaces/ILevel";
 import { getRandomInt, randomPositonBall } from "./universal";
 import { GameReturnType } from "../../interfaces/GameReturnType";
+import IScore from "../../interfaces/IScore";
 
 const useGame = (): GameReturnType => {
   const [balls, setBalls] = useState<IBall[]>([]);
@@ -15,6 +16,7 @@ const useGame = (): GameReturnType => {
   const [score, setScore] = useState<number>(0);
   const [map, setMap] = useState<IMap>(mapsCollection[0]);
   const [level, setLevel] = useState<ILevel>(mapsCollection[0].levels[0]);
+  const [scoreds, setScored] = useState<IScore[]>([]);
   const [gameState, setGameState] = useState<GameStateEnum>(
     GameStateEnum.Start
   );
@@ -106,6 +108,22 @@ const useGame = (): GameReturnType => {
       points,
     };
   };
+
+  const createScored = (
+    color: string,
+    positionX: number,
+    positionY: number,
+    points: string
+  ): void => {
+    const id = uuidv4();
+    setTimeout(() => removeScored(id), 1500);
+    setScored((prev) => [...prev, { id, positionX, positionY, color, points }]);
+  };
+
+  const removeScored = (id: string): void => {
+    setScored((prev) => prev.filter((scored) => scored.id !== id));
+  };
+
   /**
    * Remove ball from balls list
    * @param ballId Id of ball to remove
@@ -126,7 +144,10 @@ const useGame = (): GameReturnType => {
     positionX: number,
     positonY: number
   ): void => {
-    if (isPlaing) setScore((prev) => prev + pointsToAdd);
+    if (isPlaing) {
+      setScore((prev) => prev + pointsToAdd);
+      createScored("green", positionX, positonY, String(pointsToAdd));
+    }
 
     setBalls((prev) => prev.filter((ball) => ball.id !== ballId));
   };
@@ -181,6 +202,7 @@ const useGame = (): GameReturnType => {
     selectLevel,
     changeStateOfGame,
     selectMap,
+    scoreds,
   };
 };
 

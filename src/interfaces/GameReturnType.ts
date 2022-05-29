@@ -2,6 +2,7 @@ import { GameStateEnum } from "./GameStatEnum";
 import IBall from "./IBall";
 import ILevel from "./ILevel";
 import IMap from "./IMap";
+import IScore from "./IScore";
 
 export type GameReturnType = {
   balls: IBall[];
@@ -21,4 +22,5 @@ export type GameReturnType = {
   selectLevel: (levelId: string) => void;
   changeStateOfGame: (state: GameStateEnum) => void;
   selectMap: (mapId: string) => void;
+  scoreds: IScore[];
 };

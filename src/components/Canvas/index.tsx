@@ -3,6 +3,7 @@ import useGame from "../../hooks/useGame";
 import Ball from "../Ball";
 import Control from "../Control";
 import Navigation from "../Navigation";
+import Scored from "../Scored";
 import { CanvasContainer } from "./components";
 
 const Canvas: React.FC = (): JSX.Element => {
@@ -19,6 +20,7 @@ const Canvas: React.FC = (): JSX.Element => {
     selectLevel,
     changeStateOfGame,
     selectMap,
+    scoreds,
   } = useGame();
 
   return (
@@ -36,6 +38,18 @@ const Canvas: React.FC = (): JSX.Element => {
             positionY={positionY}
             color={color}
             points={points}
+          />
+        );
+      })}
+      {scoreds.map((scored) => {
+        const { id, color, points, positionX, positionY } = scored;
+        return (
+          <Scored
+            key={id}
+            color={color}
+            points={points}
+            positionX={positionX}
+            positionY={positionY}
           />
         );
       })}

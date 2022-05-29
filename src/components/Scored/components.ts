@@ -6,11 +6,14 @@ export const ScoreContainer = styled(motion.div)<IScoreElementProps>`
   position: absolute;
   top: ${(props) => `${props.positionY}px`};
   left: ${(props) => `${props.positionX}px`};
-  color: ${(props) => props.color};
+  color: white;
   z-index: 3;
+  user-select: none;
+  display: block;
   font-size: 2rem;
-  text-shadow: 0 0 4px ${(props) => props.color},
-    0 0 11px ${(props) => props.color}, 0 0 19px #fff,
-    0 0 40px ${(props) => props.color}, 0 0 80px ${(props) => props.color},
-    0 0 90px ${(props) => props.color}, 0 0 100px ${(props) => props.color};
+  -webkit-tap-highlight-color: transparent;
+  text-shadow: -0.2rem -0.2rem 1rem #fff, 0.2rem 0.2rem 1rem #fff,
+    0 0 2rem ${(props) => props.color}, 0 0 4rem ${(props) => props.color},
+    0 0 6rem ${(props) => props.color}, 0 0 8rem ${(props) => props.color},
+    0 0 10rem ${(props) => props.color};
 `;

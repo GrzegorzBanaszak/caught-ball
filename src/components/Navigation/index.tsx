@@ -1,27 +1,22 @@
-import React from "react";
-import "../styles/navigation.css";
-
-interface INavigation {
-  roundTime: number;
-  score: number;
-}
+import { INavigation } from "../../interfaces/INavigation";
+import { Nav, NavContainer } from "./components";
 
 const Navigation: React.FC<INavigation> = ({
   roundTime,
   score,
 }): JSX.Element => {
   return (
-    <nav>
-      <div className="nav-container">
-        <div className="nav-info">
+    <Nav>
+      <NavContainer>
+        <div>
           Time{" "}
           {`${Math.floor(roundTime / 60)}:${
             roundTime % 60 < 10 ? "0" + (roundTime % 60) : roundTime % 60
           }`}
         </div>
-        <div className="nav-info">Points {score}</div>
-      </div>
-    </nav>
+        <div>Points {score}</div>
+      </NavContainer>
+    </Nav>
   );
 };
 

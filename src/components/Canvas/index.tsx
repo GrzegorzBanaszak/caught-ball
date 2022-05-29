@@ -1,6 +1,5 @@
 import React from "react";
 import useGame from "../../hooks/useGame";
-import "../styles/canvas.css";
 import Ball from "../Ball";
 import Control from "../Control";
 import Navigation from "../Navigation";
@@ -23,7 +22,7 @@ const Canvas: React.FC = (): JSX.Element => {
   } = useGame();
 
   return (
-    <CanvasContainer bgImage={require("../assets/" + map.levelBackground)}>
+    <CanvasContainer bgImage={require("../../assets/" + map.levelBackground)}>
       {isPlaing && <Navigation roundTime={roundTime} score={score} />}
       {balls.map((item) => {
         const { size, positionX, positionY, color, id, points } = item;

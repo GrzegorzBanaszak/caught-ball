@@ -117,6 +117,8 @@ const useGame = (): GameReturnType => {
    * Remove ball on click and add points
    * @param ballId Id of ball to remove
    * @param pointsToAdd Points to add
+   * @param positionX Positon in X cordiante
+   * @param positonY Positon in Y cordiante
    */
   const onBallClick = (
     ballId: string,

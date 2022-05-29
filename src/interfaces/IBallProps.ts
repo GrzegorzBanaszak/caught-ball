@@ -4,5 +4,10 @@ import { IBallElementProps } from "./IBallElementProps";
 export interface IBallProps extends IBallElementProps {
   ballId: string;
   points: number;
-  onBallClick: (ballId: string, pointsToAdd: number) => void;
+  onBallClick: (
+    ballId: string,
+    pointsToAdd: number,
+    positionX: number,
+    positonY: number
+  ) => void;
 }

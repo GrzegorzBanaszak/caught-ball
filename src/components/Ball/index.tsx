@@ -11,7 +11,7 @@ const Ball: React.FC<IBallProps> = ({
   points,
 }): JSX.Element => {
   const handleClickBall = () => {
-    setTimeout(() => onBallClick(ballId, points), 100);
+    setTimeout(() => onBallClick(ballId, points, positionX, positionY), 100);
   };
   return (
     <BallElement

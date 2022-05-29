@@ -1,6 +1,7 @@
 import { GameStateEnum } from "../../interfaces/GameStatEnum";
 import { IControlProps } from "../../interfaces/IControlProps";
 import { mapsCollection } from "../../maps";
+import Scored from "../Scored";
 import {
   Container,
   LevelSelect,
@@ -27,6 +28,7 @@ const Control: React.FC<IControlProps> = ({
   if (gameState === GameStateEnum.Start) {
     return (
       <Container>
+        <Scored points="150" color="red" positionX={100} positionY={343} />
         <MapsContainer>
           {mapsCollection.map((mapElement) => (
             <Map key={mapElement.id}>

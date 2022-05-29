@@ -1,9 +1,10 @@
 import React from "react";
-import useGame from "../hooks/useGame";
+import useGame from "../../hooks/useGame";
 import "../styles/canvas.css";
-import Ball from "./Ball";
-import Control from "./Control";
-import Navigation from "./Navigation";
+import Ball from "../Ball";
+import Control from "../Control";
+import Navigation from "../Navigation";
+import { CanvasContainer } from "./components";
 
 const Canvas: React.FC = (): JSX.Element => {
   const {
@@ -22,12 +23,7 @@ const Canvas: React.FC = (): JSX.Element => {
   } = useGame();
 
   return (
-    <main
-      style={{
-        backgroundImage: `url(${require("../assets/" + map.levelBackground)})`,
-      }}
-      className="canvas-container"
-    >
+    <CanvasContainer bgImage={require("../assets/" + map.levelBackground)}>
       {isPlaing && <Navigation roundTime={roundTime} score={score} />}
       {balls.map((item) => {
         const { size, positionX, positionY, color, id, points } = item;
@@ -56,7 +52,7 @@ const Canvas: React.FC = (): JSX.Element => {
           selectMap={selectMap}
         />
       )}
-    </main>
+    </CanvasContainer>
   );
 };
 
